@@ -38,7 +38,7 @@
                       },
                       "id": {
                         "type": "string",
-                        "description": "iThe resource idd",
+                        "description": "The resource id",
                         "title": "id"
                       },
                       "type": {
