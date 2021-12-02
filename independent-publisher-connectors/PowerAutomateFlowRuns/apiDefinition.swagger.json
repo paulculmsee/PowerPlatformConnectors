@@ -1,0 +1,347 @@
+{
+  "swagger": "2.0",
+  "info":{
+    "title":"Power Automste Flow Runs",
+    "version":"1.0",
+    "description":"Power Automate provides a Management Connector, but this does not provide a means to get details on the Runs made by flows. This connecter rectifies this gap by providing the ability to enumerate runs for a specified flow.",
+    "contact":{
+      "name":"Paul Culmsee",
+	  "url" : "https://www.sevensigma.com.au",
+      "email":"paul.culmsee@sevensigma.com.au"
+    }
+  },
+  "host": "emea.api.flow.microsoft.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/providers/Microsoft.ProcessSimple/environments/{environment_name}/flows/{flow_name}/runs": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Workflow Run List Result",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Gets the workflow run name.",
+                        "title": "name"
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "iThe resource idd",
+                        "title": "id"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Gets the workflow run type.",
+                        "title": "type"
+                      },
+                      "properties": {
+                        "type": "object",
+                        "properties": {
+                          "startTime": {
+                            "type": "string",
+                            "description": "Gets the workflow run start time",
+                            "title": "startTime"
+                          },
+                          "endTime": {
+                            "type": "string",
+                            "description": "Gets the workflow run end time",
+                            "title": "endTime"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Gets the workflow run status",
+                            "title": "status"
+                          },
+                          "correlation": {
+                            "type": "object",
+                            "properties": {
+                              "clientTrackingId": {
+                                "type": "string",
+                                "description": "The client tracking id.",
+                                "title": "clientTrackingId"
+                              }
+                            },
+                            "description": "The run correlation.",
+                            "title": "correlation"
+                          },
+                          "trigger": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Gets the trigger name",
+                                "title": "name"
+                              },
+                              "inputsLink": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string",
+                                    "description": "The trigger input content link URI.",
+                                    "title": "uri"
+                                  },
+                                  "contentVersion": {
+                                    "type": "string",
+                                    "description": "The trigger input content version.",
+                                    "title": "contentVersion"
+                                  },
+                                  "contentSize": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "description": "The trigger input content size.",
+                                    "title": "contentSize"
+                                  },
+                                  "contentHash": {
+                                    "type": "object",
+                                    "properties": {
+                                      "algorithm": {
+                                        "type": "string",
+                                        "description": "The algorithm of the trigger input content hash.",
+                                        "title": "algorithm"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The value of the trigger input content hash.",
+                                        "title": "value"
+                                      }
+                                    },
+                                    "description": "The trigger input content hash.",
+                                    "title": "contentHash"
+                                  }
+                                },
+                                "description": "Gets the link to trigger inputs.",
+                                "title": "inputsLink"
+                              },
+                              "outputsLink": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string",
+                                    "description": "The trigger output content link URI.",
+                                    "title": "uri"
+                                  },
+                                  "contentVersion": {
+                                    "type": "string",
+                                    "description": "The trigger output content version",
+                                    "title": "contentVersion"
+                                  },
+                                  "contentSize": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "description": "The trigger output content size",
+                                    "title": "contentSize"
+                                  },
+                                  "contentHash": {
+                                    "type": "object",
+                                    "properties": {
+                                      "algorithm": {
+                                        "type": "string",
+                                        "description": "The algorithm of the trigger output content hash.",
+                                        "title": "algorithm"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The value of the trigger output content hash.",
+                                        "title": "value"
+                                      }
+                                    },
+                                    "description": "The trigger output content hash.",
+                                    "title": "contentHash"
+                                  }
+                                },
+                                "description": "Gets the link to trigger outputs.",
+                                "title": "outputsLink"
+                              },
+                              "startTime": {
+                                "type": "string",
+                                "description": "starGets the start time.tTime",
+                                "title": "startTime"
+                              },
+                              "endTime": {
+                                "type": "string",
+                                "description": "Gets the end time.",
+                                "title": "endTime"
+                              },
+                              "originHistoryName": {
+                                "type": "string",
+                                "description": "originHistoryName",
+                                "title": "originHistoryName"
+                              },
+                              "correlation": {
+                                "type": "object",
+                                "properties": {
+                                  "clientTrackingId": {
+                                    "type": "string",
+                                    "description": "The client tracking id.",
+                                    "title": "clientTrackingId"
+                                  }
+                                },
+                                "description": "The run correlation.",
+                                "title": "correlation"
+                              },
+                              "status": {
+                                "type": "string",
+                                "description": "Gets the run status.",
+                                "title": "status"
+                              }
+                            },
+                            "description": "Gets the fired trigger.",
+                            "title": "trigger"
+                          },
+                          "code": {
+                            "type": "string",
+                            "description": "Gets the code.",
+                            "title": "code"
+                          },
+                          "error": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "description": "The error code",
+                                "title": "code"
+                              },
+                              "message": {
+                                "type": "string",
+                                "description": "The error message",
+                                "title": "message"
+                              }
+                            },
+                            "description": "Gets the error.",
+                            "title": "error"
+                          }
+                        },
+                        "description": "properties",
+                        "title": "properties"
+                      }
+                    }
+                  },
+                  "description": "value",
+                  "title": "value"
+                },
+                "nextLink": {
+                  "type": "string",
+                  "description": "The URL to get the next set of results.",
+                  "title": "nextLink"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Flow Runs",
+        "description": "Get run history of specified flow in specified environment",
+        "operationId": "GetFlowRuns",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "environment_name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "default": "701eb783-06f3-43cc-907d-97e37e4cfddb",
+            "x-ms-visibility": "important",
+			"x-ms-url-encoding" : "single",
+            "description": "Environment ID",
+            "x-ms-summary": "Environment ID"
+          },
+          {
+            "name": "flow_name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "default": "23a83d57-ad8a-4718-9f24-ba9f017c5593",
+            "x-ms-visibility": "important",
+			"x-ms-url-encoding" : "single",			
+            "description": "Flow ID",
+            "x-ms-summary": "Flow ID"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "x-ms-visibility": "important",
+            "description": "The filter to apply on the operation. Options for filters include: Status, StartTime, and ClientTrackingId.",
+            "x-ms-summary": "Options for filters include: Status, StartTime, and ClientTrackingId.",
+            "enum": [
+              "Status eq 'failed'",
+              "Status eq 'running'"
+            ]
+          },
+          {
+            "name": "$skiptoken",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "x-ms-visibility": "important",
+            "description": "Skip Token",
+            "x-ms-summary": "Skip Token"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "x-ms-visibility": "important",
+            "description": "Top",
+            "x-ms-summary": "Top"
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "2016-11-01",
+            "x-ms-visibility": "internal",
+            "description": "API Version",
+            "x-ms-summary": "API Version"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "oauth2_auth": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://login.windows.net/common/oauth2/authorize",
+      "tokenUrl": "https://login.windows.net/common/oauth2/authorize",
+      "scopes": {}
+    }
+  },
+  "security": [
+    {
+      "oauth2_auth": []
+    }
+  ],
+  "tags": [],
+  "x-ms-connector-metadata": [
+      {
+        "propertyName": "Website",
+        "propertyValue": "https://flow.microsoft.com"
+      },
+      {
+        "propertyName": "Privacy policy",
+        "propertyValue": "https://docs.microsoft.com/en-us/power-platform/admin/wp-compliance-data-privacy"
+      },
+      {
+        "propertyName": "Categories",
+        "propertyValue": "Data"
+      }
+    ]
+}
