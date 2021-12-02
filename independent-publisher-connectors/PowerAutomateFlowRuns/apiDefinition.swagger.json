@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info":{
-    "title":"Power Automste Flow Runs",
+    "title":"Power Automate Flow Runs",
     "version":"1.0",
     "description":"Power Automate provides a Management Connector, but this does not provide a means to get details on the Runs made by flows. This connecter rectifies this gap by providing the ability to enumerate runs for a specified flow.",
     "contact":{
