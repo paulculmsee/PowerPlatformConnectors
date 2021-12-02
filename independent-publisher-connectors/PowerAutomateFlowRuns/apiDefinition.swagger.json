@@ -253,8 +253,8 @@
             "default": "701eb783-06f3-43cc-907d-97e37e4cfddb",
             "x-ms-visibility": "important",
 			"x-ms-url-encoding" : "single",
-            "description": "Environment ID",
-            "x-ms-summary": "Environment ID"
+            "description": "The Flow Environment Name",
+            "x-ms-summary": "The Flow Environment Name"
           },
           {
             "name": "flow_name",
@@ -264,8 +264,8 @@
             "default": "23a83d57-ad8a-4718-9f24-ba9f017c5593",
             "x-ms-visibility": "important",
 			"x-ms-url-encoding" : "single",			
-            "description": "Flow ID",
-            "x-ms-summary": "Flow ID"
+            "description": "The Flow Name",
+            "x-ms-summary": "The Flow Name"
           },
           {
             "name": "$filter",
@@ -295,8 +295,8 @@
             "required": false,
             "type": "integer",
             "x-ms-visibility": "important",
-            "description": "Top",
-            "x-ms-summary": "Top"
+            "description": "The number of items to be included in the result.",
+            "x-ms-summary": "Number of items to return."
           },
           {
             "name": "api-version",
@@ -305,7 +305,7 @@
             "type": "string",
             "default": "2016-11-01",
             "x-ms-visibility": "internal",
-            "description": "API Version",
+            "description": "The API version.",
             "x-ms-summary": "API Version"
           }
         ]
