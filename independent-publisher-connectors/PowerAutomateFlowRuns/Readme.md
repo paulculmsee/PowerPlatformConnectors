@@ -1,4 +1,4 @@
-## power Automate Flow Runs Connector
+## Power Automate Flow Runs Connector
 Power Automate provides a Management Connector, but this does not provide a means to get details on the Runs made by flows. This connecter rectifies this gap by providing the ability to enumerate runs for a specified flow.
 
 ## Prerequisites
