@@ -33,7 +33,7 @@ paconn create --api-def apiDefinition.swagger.json --api-prop apiProperties.json
 
 ## Supported Operations
 The connector supports the following operations:
-* `Get Flow Runs`: List keys in the specified vault
+* `Get Flow Runs`: List flow runs for specified flow
 
 
 
