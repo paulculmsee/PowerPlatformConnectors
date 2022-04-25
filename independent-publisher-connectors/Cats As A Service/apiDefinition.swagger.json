@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Cats as a Service",
+    "title": "Cats As a Service",
     "description": "Because everyday is a Caturday. A public service API all about Cats, free to use when making your fancy new App, Website or Service",
     "version": "1.0",
     "contact": {
@@ -288,9 +288,9 @@
             }
           }
         },
-        "summary": "Get Favourite Kitties",
-        "description": "Get Favourite Kitties",
-        "operationId": "GetFavouriteKitties",
+        "summary": "Get Favorite Kitties",
+        "description": "Get Favorite Kitties",
+        "operationId": "GetFavoriteKitties",
         "parameters": []
       },
       "post": {
@@ -302,9 +302,9 @@
             }
           }
         },
-        "summary": "Save Kitty as a Favourite",
-        "description": "Save Kitty as a Favourite",
-        "operationId": "SaveKittyasFavourite",
+        "summary": "Save Kitty as a Favorite",
+        "description": "Save Kitty as a Favorite",
+        "operationId": "SaveKittyasFavorite",
         "parameters": [
           {
             "$ref": "#/parameters/kittyfavbody"
@@ -312,7 +312,7 @@
         ]
       }
     },
-    "/favourites/{favourite_id}": {
+    "/favourites/{favorite_id}": {
       "get": {
         "responses": {
           "200": {
@@ -322,9 +322,9 @@
             }
           }
         },
-        "summary": "Get a Specific Favourite Kitty",
-        "description": "Get a Specific Favourite Kitty",
-        "operationId": "GetSpecificFavouriteKitty",
+        "summary": "Get a Specific Favorite Kitty",
+        "description": "Get a Specific Favorite Kitty",
+        "operationId": "GetSpecificFavoriteKitty",
         "parameters": [
           {
             "$ref": "#/parameters/favid"
@@ -340,9 +340,9 @@
             }
           }
         },
-        "summary": "Remove a Kitty from Favourites",
-        "description": "Remove a Kitty from Favourites",
-        "operationId": "RemoveKittyfromFavourites",
+        "summary": "Remove a Kitty from Favorites",
+        "description": "Remove a Kitty from Favorites",
+        "operationId": "RemoveKittyfromFavorites",
         "parameters": [
           {
             "$ref": "#/parameters/favid"
@@ -383,9 +383,9 @@
             }
           }
         },
-        "summary": "Analyse Uploaded Kitty Photo",
-        "description": "Analyse Uploaded Kitty Photo",
-        "operationId": "AnalyseUploadedKittyPhoto",
+        "summary": "Analyze Uploaded Kitty Photo",
+        "description": "Analyze Uploaded Kitty Photo",
+        "operationId": "AnalyzeUploadedKittyPhoto",
         "parameters": [
           {
             "$ref": "#/parameters/imageid"
@@ -452,7 +452,7 @@
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "Favourite Id"
+          "description": "Favorite Id"
         },
         "user_id": {
           "type": "string",
@@ -464,7 +464,7 @@
         },
         "sub_id": {
           "type": "string",
-          "description": "User Identifier"
+          "description": "Subscriber Id"
         },
         "created_at": {
           "type": "string",
@@ -500,7 +500,7 @@
         },
         "sub_id": {
           "type": "string",
-          "description": "User Identifier"
+          "description": "Subscriber Id"
         },
         "created_at": {
           "type": "string",
@@ -646,7 +646,7 @@
         },
         "cfa_url": {
           "type": "string",
-          "description": "Cat Fanciers Assocation url"
+          "description": "Cat Fanciers Association url"
         },
         "vetstreet_url": {
           "type": "string",
@@ -702,7 +702,7 @@
         "affection_level": {
           "type": "integer",
           "format": "int32",
-          "description": "Affection evel"
+          "description": "Affection level"
         },
         "child_friendly": {
           "type": "integer",
@@ -752,7 +752,7 @@
         "vocalisation": {
           "type": "integer",
           "format": "int32",
-          "description": "Vocalisation"
+          "description": "Vocalization"
         },
         "experimental": {
           "type": "integer",
@@ -973,7 +973,7 @@
               "vocalisation": {
                 "type": "integer",
                 "format": "int32",
-                "description": "Vocalisation"
+                "description": "Vocalization"
               },
               "experimental": {
                 "type": "integer",
@@ -1099,7 +1099,7 @@
           },
           "sub_id": {
             "type": "string",
-            "description": "User Identifier"
+            "description": "Subscriber Id"
           }
         }
       }
@@ -1153,20 +1153,20 @@
       "x-ms-url-encoding": "single"
     },
     "favid": {
-      "name": "favourite_id",
+      "name": "favorite_id",
       "in": "path",
       "required": true,
       "type": "string",
-      "x-ms-summary": "Favourite Id",
-      "description": "Favourite Id",
+      "x-ms-summary": "Favorite Id",
+      "description": "Favorite Id",
       "x-ms-url-encoding": "single"
     },
     "subscriber": {
       "name": "sub_id",
       "in": "query",
       "required": false,
-      "x-ms-summary": "User identifier",
-      "description": "User identifier",
+      "x-ms-summary": "Subscriber Id",
+      "description": "Subscriber Id",
       "type": "integer"
     },
     "filetoupload": {
@@ -1181,8 +1181,8 @@
       "in": "formData",
       "name": "sub_id",
       "type": "string",
-      "x-ms-summary": "User identifier",
-      "description": "User identifier"
+      "x-ms-summary": "Subscriber Id",
+      "description": "Subscriber Id"
     },
     "page": {
       "name": "page",
