@@ -1,0 +1,1317 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cats as a Service",
+    "description": "Because everyday is a Caturday. A public service API all about Cats, free to use when making your fancy new App, Website or Service",
+    "version": "1.0",
+    "contact": {
+      "name": "Paul Culmsee",
+      "url": "https://www.sevensigma.com.au",
+      "email": "paul.culmsee@sevensigma.com.au"
+    }
+  },
+  "host": "api.thecatapi.com",
+  "basePath": "/v1/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/images/search": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/kittyPhotoModel"
+              }
+            },
+            "headers": {
+              "pagination-count": {
+                "description": "Pagination Count",
+                "type": "string"
+              },
+              "pagination-limit": {
+                "description": "Pagination Limit",
+                "type": "string"
+              },
+              "pagination-page": {
+                "description": "Pagination-Page",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "summary": "Search for a Kitty",
+        "operationId": "KittySearch",
+        "description": "Search for a Kitty",
+        "parameters": [
+          {
+            "$ref": "#/parameters/size"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/category_ids"
+          },
+          {
+            "$ref": "#/parameters/breed_ids"
+          },
+          {
+            "$ref": "#/parameters/has_breeds"
+          },
+          {
+            "$ref": "#/parameters/include_breeds"
+          },
+          {
+            "$ref": "#/parameters/include_categories"
+          }
+        ]
+      }
+    },
+    "/categories": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/categoryModel"
+              }
+            },
+            "headers": {
+              "pagination-count": {
+                "description": "Pagination Count",
+                "type": "string"
+              },
+              "pagination-limit": {
+                "description": "Pagination Limit",
+                "type": "string"
+              },
+              "pagination-page": {
+                "description": "Pagination-Page",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "summary": "Get Kitty Image Categories",
+        "description": "Get Kitty Image Categories",
+        "operationId": "GetKittyImageCategories",
+        "parameters": [
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/page"
+          }
+        ]
+      }
+    },
+    "/breeds": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/breedsModel"
+              }
+            },
+            "headers": {
+              "pagination-count": {
+                "description": "Pagination Count",
+                "type": "string"
+              },
+              "pagination-limit": {
+                "description": "Pagination Limit",
+                "type": "string"
+              },
+              "pagination-page": {
+                "description": "Pagination-Page",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "summary": "Get Kitty Breeds",
+        "description": "Get Kitty Breeds",
+        "operationId": "GetKittyBreeds",
+        "parameters": [
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/page"
+          }
+        ]
+      }
+    },
+    "/breeds/search": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/breedsModel"
+              }
+            }
+          }
+        },
+        "summary": "Search Kitty Breeds",
+        "parameters": [
+          {
+            "$ref": "#/parameters/searchquery"
+          }
+        ],
+        "operationId": "SearchKittyBreedsbyName",
+        "description": "Search Kitty Breeds by Name"
+      }
+    },
+    "/votes": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/voteModel"
+              }
+            }
+          }
+        },
+        "summary": "Get Kitty Votes",
+        "operationId": "GetKittyVotes",
+        "description": "Get Kitty Votes",
+        "parameters": [
+          {
+            "$ref": "#/parameters/subscriber"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/page"
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/postVoteResponseModel"
+            }
+          }
+        },
+        "summary": "Vote for a Kitty",
+        "description": "Vote for a Kitty",
+        "operationId": "VoteforKitty",
+        "parameters": [
+          {
+            "$ref": "#/parameters/kittyvotebody"
+          }
+        ]
+      }
+    },
+    "/votes/{vote_id}": {
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/deletedItemModel"
+            }
+          }
+        },
+        "summary": "Delete a Kitty Vote",
+        "description": "Delete a Kitty Vote",
+        "operationId": "DeleteKittyVote",
+        "parameters": [
+          {
+            "$ref": "#/parameters/voteid"
+          }
+        ]
+      }
+    },
+    "/images/upload": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "summary": "Upload a Kitty Photo",
+        "description": "Upload a Kitty Photo",
+        "operationId": "UploadKittyPhoto",
+        "parameters": [
+          {
+            "$ref": "#/parameters/filetoupload"
+          },
+          {
+            "$ref": "#/parameters/subscriberFormData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/uploadedKittyImageModel"
+            }
+          }
+        }
+      }
+    },
+    "/favourites": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/favKittyModel"
+              }
+            }
+          }
+        },
+        "summary": "Get Favourite Kitties",
+        "description": "Get Favourite Kitties",
+        "operationId": "GetFavouriteKitties",
+        "parameters": []
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/postFavKittyModel"
+            }
+          }
+        },
+        "summary": "Save Kitty as a Favourite",
+        "description": "Save Kitty as a Favourite",
+        "operationId": "SaveKittyasFavourite",
+        "parameters": [
+          {
+            "$ref": "#/parameters/kittyfavbody"
+          }
+        ]
+      }
+    },
+    "/favourites/{favourite_id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/favKittyModel"
+            }
+          }
+        },
+        "summary": "Get a Specific Favourite Kitty",
+        "description": "Get a Specific Favourite Kitty",
+        "operationId": "GetSpecificFavouriteKitty",
+        "parameters": [
+          {
+            "$ref": "#/parameters/favid"
+          }
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/deletedItemModel"
+            }
+          }
+        },
+        "summary": "Remove a Kitty from Favourites",
+        "description": "Remove a Kitty from Favourites",
+        "operationId": "RemoveKittyfromFavourites",
+        "parameters": [
+          {
+            "$ref": "#/parameters/favid"
+          }
+        ]
+      }
+    },
+    "/images/{image_id}": {
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/deletedItemModel"
+            }
+          }
+        },
+        "summary": "Delete an Uploaded Kitty Photo",
+        "description": "Delete an Uploaded Kitty Photo",
+        "operationId": "DeleteUploadedKittyPhoto",
+        "parameters": [
+          {
+            "$ref": "#/parameters/imageid"
+          }
+        ]
+      }
+    },
+    "/images/{image_id}/analysis": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/kittyImageAnalysisModel"
+              }
+            }
+          }
+        },
+        "summary": "Analyse Uploaded Kitty Photo",
+        "description": "Analyse Uploaded Kitty Photo",
+        "operationId": "AnalyseUploadedKittyPhoto",
+        "parameters": [
+          {
+            "$ref": "#/parameters/imageid"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "uploadedKittyImageModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Image Id"
+        },
+        "url": {
+          "type": "string",
+          "description": "Image Url"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Image width"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Image height"
+        },
+        "original_filename": {
+          "type": "string",
+          "description": "Original Filename"
+        },
+        "pending": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Image pending approval"
+        },
+        "approved": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Image approved"
+        }
+      }
+    },
+    "postFavKittyModel": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Image Id"
+        }
+      }
+    },
+    "favKittyModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Favourite Id"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "User Id"
+        },
+        "image_id": {
+          "type": "string",
+          "description": "Image Id"
+        },
+        "sub_id": {
+          "type": "string",
+          "description": "User Identifier"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "Created At"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Image Id"
+            },
+            "url": {
+              "type": "string",
+              "description": "Image Url"
+            }
+          },
+          "description": "Image Details"
+        }
+      }
+    },
+    "voteModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Vote Id"
+        },
+        "image_id": {
+          "type": "string",
+          "description": "Image Id"
+        },
+        "sub_id": {
+          "type": "string",
+          "description": "User Identifier"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "Created At"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Value"
+        },
+        "country_code": {
+          "type": "string",
+          "description": "Country Code"
+        }
+      }
+    },
+    "deletedItemModel": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message"
+        }
+      }
+    },
+    "kittyImageAnalysisModel": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string",
+                "description": "Name"
+              },
+              "Confidence": {
+                "type": "number",
+                "format": "float",
+                "description": "Confidence"
+              },
+              "Instances": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "BoundingBox": {
+                      "type": "object",
+                      "properties": {
+                        "Width": {
+                          "type": "number",
+                          "format": "float",
+                          "description": "Width"
+                        },
+                        "Height": {
+                          "type": "number",
+                          "format": "float",
+                          "description": "Height"
+                        },
+                        "Left": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Left"
+                        },
+                        "Top": {
+                          "type": "number",
+                          "format": "float",
+                          "description": "Top"
+                        }
+                      },
+                      "description": "BoundingBox"
+                    },
+                    "Confidence": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Confidence"
+                    }
+                  }
+                },
+                "description": "Instances"
+              },
+              "Parents": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Name": {
+                      "type": "string",
+                      "description": "Name"
+                    }
+                  }
+                },
+                "description": "Parents"
+              }
+            }
+          },
+          "description": "Labels"
+        },
+        "moderation_labels": {
+          "type": "array",
+          "items": {},
+          "description": "Moderation labels"
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Vendor"
+        },
+        "image_id": {
+          "type": "string",
+          "description": "Image Id"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "Created at"
+        }
+      }
+    },
+    "breedsModel": {
+      "type": "object",
+      "properties": {
+        "weight": {
+          "type": "object",
+          "properties": {
+            "imperial": {
+              "type": "string",
+              "description": "Weight (imperial)"
+            },
+            "metric": {
+              "type": "string",
+              "description": "Weight (metric)"
+            }
+          },
+          "description": "Weight"
+        },
+        "id": {
+          "type": "string",
+          "description": "Breed Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Breed name"
+        },
+        "cfa_url": {
+          "type": "string",
+          "description": "Cat Fanciers Assocation url"
+        },
+        "vetstreet_url": {
+          "type": "string",
+          "description": "Vet Street url"
+        },
+        "vcahospitals_url": {
+          "type": "string",
+          "description": "VCA Animal Hospitals url"
+        },
+        "temperament": {
+          "type": "string",
+          "description": "Temperament"
+        },
+        "origin": {
+          "type": "string",
+          "description": "Origin"
+        },
+        "country_codes": {
+          "type": "string",
+          "description": "Country codes"
+        },
+        "country_code": {
+          "type": "string",
+          "description": "Country code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description"
+        },
+        "life_span": {
+          "type": "string",
+          "description": "Life span"
+        },
+        "indoor": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Indoor"
+        },
+        "lap": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Lap"
+        },
+        "alt_names": {
+          "type": "string",
+          "description": "Alternate names"
+        },
+        "adaptability": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Adaptability"
+        },
+        "affection_level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Affection evel"
+        },
+        "child_friendly": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Child friendly"
+        },
+        "dog_friendly": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Dog friendly"
+        },
+        "energy_level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Energy level"
+        },
+        "grooming": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Grooming"
+        },
+        "health_issues": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Health issues"
+        },
+        "intelligence": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Intelligence"
+        },
+        "shedding_level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Shedding level"
+        },
+        "social_needs": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Social needs"
+        },
+        "stranger_friendly": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Stranger friendly"
+        },
+        "vocalisation": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Vocalisation"
+        },
+        "experimental": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Experimental"
+        },
+        "hairless": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Hairless"
+        },
+        "natural": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Natural"
+        },
+        "rare": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Rare"
+        },
+        "rex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Rex"
+        },
+        "suppressed_tail": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Suppressed tail"
+        },
+        "short_legs": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Short legs"
+        },
+        "wikipedia_url": {
+          "type": "string",
+          "description": "Wikipedia url"
+        },
+        "hypoallergenic": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Hypoallergenic"
+        },
+        "reference_image_id": {
+          "type": "string",
+          "description": "Reference image Id"
+        },
+        "cat_friendly": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Cat friendly"
+        },
+        "bidability": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Bidability"
+        },
+        "extinct": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Extinct"
+        }
+      }
+    },
+    "categoryModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Category ID",
+          "title": "Category ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Category Name",
+          "title": "Category Name"
+        }
+      }
+    },
+    "kittyPhotoModel": {
+      "type": "object",
+      "properties": {
+        "breeds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "weight": {
+                "type": "object",
+                "properties": {
+                  "imperial": {
+                    "type": "string",
+                    "description": "Imperial weight"
+                  },
+                  "metric": {
+                    "type": "string",
+                    "description": "Metric weight"
+                  }
+                },
+                "description": "Cat Weight"
+              },
+              "id": {
+                "type": "string",
+                "description": "Id"
+              },
+              "name": {
+                "type": "string",
+                "description": "Breed name"
+              },
+              "cfa_url": {
+                "type": "string",
+                "description": "cfa_url"
+              },
+              "vetstreet_url": {
+                "type": "string",
+                "description": "Vet street url"
+              },
+              "vcahospitals_url": {
+                "type": "string",
+                "description": "VCA Animal Hospitals_url"
+              },
+              "temperament": {
+                "type": "string",
+                "description": "Temperament"
+              },
+              "origin": {
+                "type": "string",
+                "description": "Origin"
+              },
+              "country_codes": {
+                "type": "string",
+                "description": "Country codes"
+              },
+              "country_code": {
+                "type": "string",
+                "description": "Country code"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description"
+              },
+              "life_span": {
+                "type": "string",
+                "description": "Life Span"
+              },
+              "indoor": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Indoor"
+              },
+              "lap": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Lap"
+              },
+              "alt_names": {
+                "type": "string",
+                "description": "Alternate names"
+              },
+              "adaptability": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Adaptability"
+              },
+              "affection_level": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Affection level"
+              },
+              "child_friendly": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Child friendly"
+              },
+              "dog_friendly": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Dog friendly"
+              },
+              "energy_level": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Energy level"
+              },
+              "grooming": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Grooming"
+              },
+              "health_issues": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Health Issues"
+              },
+              "intelligence": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Intelligence"
+              },
+              "shedding_level": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Shedding Level"
+              },
+              "social_needs": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Social needs"
+              },
+              "stranger_friendly": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Stranger friendly"
+              },
+              "vocalisation": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Vocalisation"
+              },
+              "experimental": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Experimental"
+              },
+              "hairless": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Hairless"
+              },
+              "natural": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Natural"
+              },
+              "rare": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Rare"
+              },
+              "rex": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Rex"
+              },
+              "suppressed_tail": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Suppressed tail"
+              },
+              "short_legs": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Short legs"
+              },
+              "wikipedia_url": {
+                "type": "string",
+                "description": "Wikipedia url"
+              },
+              "hypoallergenic": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Hypoallergenic"
+              },
+              "reference_image_id": {
+                "type": "string",
+                "description": "Reference image id"
+              },
+              "cat_friendly": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Cat friendly"
+              }
+            }
+          },
+          "description": "Cat Breeds"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Category Id"
+              },
+              "name": {
+                "type": "string",
+                "description": "Category name"
+              }
+            }
+          },
+          "description": "Categories"
+        },
+        "id": {
+          "type": "string",
+          "description": "Kitty Id"
+        },
+        "url": {
+          "type": "string",
+          "description": "Kitty image url"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Kitty image Width"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Kitty image height"
+        }
+      }
+    },
+    "postVoteResponseModel": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Vote Id"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "kittyfavbody": {
+      "name": "body",
+      "in": "body",
+      "required": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "description": "Image Id"
+          },
+          "sub_id": {
+            "type": "string",
+            "description": "User Identifier"
+          }
+        }
+      }
+    },
+    "kittyvotebody": {
+      "name": "body",
+      "in": "body",
+      "required": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "description": "image_id",
+            "title": "Cat Photo ID"
+          },
+          "sub_id": {
+            "type": "string",
+            "description": "You can also send a \u201csub_id\u201d to save the Vote to one of your users.",
+            "title": "Subscriber ID"
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Value (1 to Up Vote, or 0 to Down Vote)",
+            "title": "Vote value"
+          }
+        },
+        "required": [
+          "image_id",
+          "value"
+        ]
+      }
+    },
+    "imageid": {
+      "name": "image_id",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-summary": "Image Id",
+      "description": "Image Id",
+      "x-ms-url-encoding": "single"
+    },
+    "voteid": {
+      "name": "vote_id",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-summary": "Vote Id",
+      "description": "Vote Id",
+      "x-ms-url-encoding": "single"
+    },
+    "favid": {
+      "name": "favourite_id",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-summary": "Favourite Id",
+      "description": "Favourite Id",
+      "x-ms-url-encoding": "single"
+    },
+    "subscriber": {
+      "name": "sub_id",
+      "in": "query",
+      "required": false,
+      "x-ms-summary": "User identifier",
+      "description": "User identifier",
+      "type": "integer"
+    },
+    "filetoupload": {
+      "in": "formData",
+      "name": "file",
+      "type": "file",
+      "x-ms-summary": "Kitty pic to upload",
+      "description": "Kitty pic to upload",
+      "required": true
+    },
+    "subscriberFormData": {
+      "in": "formData",
+      "name": "sub_id",
+      "type": "string",
+      "x-ms-summary": "User identifier",
+      "description": "User identifier"
+    },
+    "page": {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "x-ms-summary": "Page",
+      "description": "Page"
+    },
+    "limit": {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "x-ms-summary": "Record limit",
+      "description": "Record Limit"
+    },
+    "size": {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "x-ms-summary": "Image size",
+      "description": "Allowed values: full, med, small, thumb",
+      "enum": [
+        "full",
+        "med",
+        "small",
+        "thumb"
+      ]
+    },
+    "order": {
+      "name": "order",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "x-ms-summary": "Search result order",
+      "description": "Allowed values: RANDOM, ASC, DESC",
+      "enum": [
+        "ASC",
+        "DESC",
+        "RANDOM"
+      ]
+    },
+    "category_ids": {
+      "name": "category_ids",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Image category",
+      "x-ms-summary": "Image category",
+      "x-ms-dynamic-values": {
+        "operationId": "GetKittyImageCategories",
+        "value-path": "id",
+        "value-title": "name"
+      }
+    },
+    "breed_ids": {
+      "name": "breed_ids",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Cat breed",
+      "x-ms-summary": "Cat breed",
+      "x-ms-dynamic-values": {
+        "operationId": "GetKittyBreeds",
+        "value-path": "id",
+        "value-title": "name"
+      }
+    },
+    "has_breeds": {
+      "name": "has_breeds",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "x-ms-summary": "Has breeds",
+      "description": "Has breeds"
+    },
+    "include_breeds": {
+      "name": "include_breeds",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "x-ms-summary": "Include breeds",
+      "description": "Include breeds"
+    },
+    "include_categories": {
+      "name": "include_categories",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "x-ms-summary": "Include categories",
+      "description": "Include categories"
+    },
+    "searchquery": {
+      "name": "q",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "x-ms-summary": "Search text",
+      "description": "Search text"
+    }
+  },
+  "responses": {},
+  "securityDefinitions": {
+    "API Key": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "x-api-key"
+    }
+  },
+  "security": [
+    {
+      "API Key": []
+    }
+  ],
+  "tags": [],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://thecatapi.com/"
+    },
+    {
+      "propertyName": "Privacy Policy",
+      "propertyValue": "https://thecatapi.com/privacy"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Data"
+    }
+  ]
+}
